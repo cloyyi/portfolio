@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Portfolio</title>
+    <link rel="stylesheet" href="client.css">
+</head>
+<body>
+    <header>
+        <h1>Vaishnavi Kamboj - Art Designer</h1>
+        <nav>
+            <button onclick="showSection('about')">About Me</button>
+            <button onclick="showSection('work')">My Work</button>
+            <button onclick="navigateToContact()">Contact</button>
+        </nav>
+    </header>
+
+    <section id="about" class="content-section">
+        <h2>About Me</h2>
+        <p>I am a passionate art designer specializing in wall art, unique projects, and commercial work. My creations are known for their vibrant colors, intricate details, and emotional depth.</p>
+    </section>
+
+    <section id="work" class="content-section gallery">
+        <div class="gallery-category" data-category="wall-art">
+            <h2>Wall Art</h2>
+            <div class="slider-container">
+                <button class="prev" onclick="moveSlide('wall-art', -1)">❮</button>
+                <div class="slider">
+                    <div class="slide"><img src="image/cafe.jpg" alt="Wall Art 1"><p>Beautiful sunset over the mountains.</p></div>
+                    <div class="slide"><img src="image/duck.jpg" alt="Wall Art 2"><p>Abstract modern art piece.</p></div>
+                </div>
+                <button class="next" onclick="moveSlide('wall-art', 1)">❯</button>
+            </div>
+        </div>
+
+        <div class="gallery-category" data-category="my-projects">
+            <h2>My Projects</h2>
+            <div class="slider-container">
+                <button class="prev" onclick="moveSlide('my-projects', -1)">❮</button>
+                <div class="slider">
+                    <div class="slide"><img src="image/eyes.jpg" alt="Project 1"><p>Handcrafted vase with floral designs.</p></div>
+                    <div class="slide"><img src="image/love.jpg" alt="Project 2"><p>Customized mural for a local café.</p></div>
+                </div>
+                <button class="next" onclick="moveSlide('my-projects', 1)">❯</button>
+            </div>
+        </div>
+
+        <div class="gallery-category" data-category="commercial-work">
+            <h2>Commercial Work</h2>
+            <div class="slider-container">
+                <button class="prev" onclick="moveSlide('commercial-work', -1)">❮</button>
+                <div class="slider">
+                    <div class="slide"><img src="image/goat.jpg" alt="Commercial 1"><p>Advertising poster for a fashion brand.</p></div>
+                    <div class="slide"><img src="image/sea.jpg" alt="Commercial 2"><p>Logo design for a tech startup.</p></div>
+                </div>
+                <button class="next" onclick="moveSlide('commercial-work', 1)">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="content-section">
+        <h2>Contact</h2>
+        <p>Email: Vaishnavi@example.com</p>
+        <p>Phone: 45456785454</p>
+    </section>
+
+    <script src="client.js"></script>
+    <script>
+        // Fetch a dynamic background image from Unsplash API
+        fetch('https://api.unsplash.com/photos/random?query=art&client_id=YOUR_UNSPLASH_ACCESS_KEY')
+            .then(response => response.json())
+            .then(data => {
+                const backgroundImage = data[0].urls.full;
+                document.body.style.backgroundImage = `url(${backgroundImage})`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center center';
+                document.body.style.height = '100vh';
+                document.body.style.margin = '0';
+            })
+            .catch(error => console.error('Error fetching background image:', error));
+
+        // Function to navigate to the Contact page
+        function navigateToContact() {
+            window.location.href = 'contact.html'; // Assuming contact.html exists
+        }
+    </script>
+</body>
+</html>
